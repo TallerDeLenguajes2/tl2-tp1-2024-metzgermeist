@@ -1,0 +1,14 @@
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\tl2-tp1-2024-metzgermeist.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\tl2-tp1-2024-metzgermeist.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\tl2-tp1-2024-metzgermeist.AssemblyInfo.cs
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\tl2-tp1-2024-metzgermeist.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\bin\Debug\net8.0\tl2-tp1-2024-metzgermeist.exe
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\bin\Debug\net8.0\tl2-tp1-2024-metzgermeist.deps.json
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\bin\Debug\net8.0\tl2-tp1-2024-metzgermeist.runtimeconfig.json
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\bin\Debug\net8.0\tl2-tp1-2024-metzgermeist.dll
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\bin\Debug\net8.0\tl2-tp1-2024-metzgermeist.pdb
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\tl2-tp1-2024-metzgermeist.dll
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\refint\tl2-tp1-2024-metzgermeist.dll
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\tl2-tp1-2024-metzgermeist.pdb
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\tl2-tp1-2024-metzgermeist.genruntimeconfig.cache
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\ref\tl2-tp1-2024-metzgermeist.dll
