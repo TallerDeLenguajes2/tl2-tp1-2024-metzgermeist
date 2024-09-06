@@ -47,6 +47,12 @@ public class informeJornadaIndivual
     public void MostrarInformeIndivual()
     {
         Console.WriteLine("El id: " + id);
+        Console.WriteLine("El nombre del cadete es: " + nombre);
+        Console.WriteLine("El jornal del cadete es: " + jornalIndividual);
+        Console.WriteLine("La cantidad de pedidos recibidos es: " + CantidadDePedidosRecibidos);
+        Console.WriteLine("La cantidad de pedidos entregados es: " + cantidadPedidosEntregados);
+        Console.WriteLine("El promedio de pedidos entregados sobre recibidos es : " + promedio);
+
     }
 
 }
