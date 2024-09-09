@@ -75,7 +75,7 @@ public class ManejoArchivosJSON : ManejoArchivosBase
         if (File.Exists(rutaCadetes) && new FileInfo(rutaCadetes).Length > 0)
         {
             string datos = File.ReadAllText(rutaCadetes);
-            LosCadetes =JsonSerializer.Deserialize<List<Cadete>>(rutaCadetes);
+            LosCadetes =JsonSerializer.Deserialize<List<Cadete>>(datos);
         }
 
         return LosCadetes;
@@ -87,8 +87,14 @@ public class ManejoArchivosJSON : ManejoArchivosBase
 
         if (File.Exists(rutaCadeteria) && new FileInfo(rutaCadeteria).Length > 0)
         {
-            string jsonContent = File.ReadAllText(rutaCadeteria);
-            cadeteriax = JsonSerializer.Deserialize<Cadeteria>(jsonContent);
+            string datos= File.ReadAllText(rutaCadeteria);
+            cadeteriax = JsonSerializer.Deserialize<Cadeteria>(datos);
+
+            if (cadeteriax.LosCadetes==null && cadeteriax != null)
+            {
+                cadeteriax.LosCadetes=DatosCadetes();
+            }
+            
         }
 
         return cadeteriax;

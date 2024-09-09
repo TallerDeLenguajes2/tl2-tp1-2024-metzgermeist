@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tl2-tp1-2024-metzgermeist")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+61d0d619713c6a17e0f12b4e45f9732daeb2e1e1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b45f822ed058e1d3923c9fae7ae65321df4b21a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("tl2-tp1-2024-metzgermeist")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tl2-tp1-2024-metzgermeist")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -6,11 +6,11 @@
         Console.WriteLine("Seleccione el formato de archivo:");
         Console.WriteLine("1. CSV");
         Console.WriteLine("2. JSON");
-        string opcion2 = Console.ReadLine();
+        string seleccion = Console.ReadLine();
 
         ManejoArchivosBase losArchivos;
 
-        switch (opcion2)
+        switch (seleccion)
         {
             case "1":
                 losArchivos = new ManejoArchivosCSV();
@@ -25,6 +25,7 @@
     
         //--crear la cadeteria--//
         Cadeteria  NuestraCadeteria= losArchivos.CrearCadeteria();
+  
         
 
         int opcion = 1;
@@ -119,7 +120,7 @@
                     Console.WriteLine("3) --  Cancelado --");
 
                     Estado nuevoEstado;
-                    int nroEstado;
+            
                     string eleccion;
                     do
                     {

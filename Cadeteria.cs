@@ -3,10 +3,12 @@ public class Cadeteria
     private string nombre;
     private string telefono;
     private List<Cadete> losCadetes;
-    public List<Cadete> LosCadetes { get => losCadetes; }
-    public List<Pedidos> ListaDePedidos { get => listaDePedidos; }
-
     private List<Pedidos> listaDePedidos;
+
+    public string Nombre { get => nombre; set => nombre = value; }
+    public string Telefono { get => telefono; set => telefono = value; }
+    public List<Cadete> LosCadetes { get => losCadetes; set => losCadetes = value; }
+    public List<Pedidos> ListaDePedidos { get => listaDePedidos; set => listaDePedidos = value; }
 
     public Cadeteria(string nom, string tel, List<Cadete> listaCadetes)
     {
@@ -14,6 +16,10 @@ public class Cadeteria
         telefono = tel;
         losCadetes = listaCadetes;
         listaDePedidos = new List<Pedidos>();
+    }
+
+    public Cadeteria()
+    {
     }
 
     public void RecibirPedido(Pedidos pedido)
