@@ -12,11 +12,13 @@ public class Pedidos
     private string observacion;
     private Cliente cliente;
     private Estado estadoDelPedido;
+    private Cadete cadeteAsginado;
 
     public int Id { get => id; }
     public string Observacion { get => observacion; }
     public Cliente Cliente { get => cliente; }
     public Estado Estado { get => estadoDelPedido; }
+    public Cadete CadeteAsginado { get => cadeteAsginado;  }
 
     public Pedidos(int num, string obs, Estado estadoPedido, string nombre, string direccion, string tel, string refe)
     {
@@ -24,6 +26,12 @@ public class Pedidos
         id = num;
         observacion = obs;
         estadoDelPedido = estadoPedido;
+        
+    }
+
+    public void RecibirCadete(Cadete cadete)
+    {
+        cadeteAsginado=cadete;
     }
     public void VerDireccionCliente()
     {
@@ -43,7 +51,7 @@ public class Pedidos
         estadoDelPedido = nuevoEstado;
     }
 
-   
+  
 
 }
 

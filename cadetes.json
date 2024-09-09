@@ -1,0 +1,26 @@
+[
+    {
+      "Id": 1,
+      "Nombre": "Cadete 1",
+      "Dirección": "Dirección 1",
+      "Telefono": "123456789"
+    },
+    {
+      "Id": 2,
+      "Nombre": "Cadete 2",
+      "Dirección": "Dirección 2",
+      "Telefono": "987654321"
+    },
+    {
+      "Id": 3,
+      "Nombre": "Cadete 3",
+      "Dirección": "Dirección 3",
+      "Telefono": "456789123"
+    },
+    {
+      "Id": 4,
+      "Nombre": "Cadete 4",
+      "Dirección": "Dirección 4",
+      "Telefono": "789123456"
+    }
+  ]

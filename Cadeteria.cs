@@ -3,89 +3,203 @@ public class Cadeteria
     private string nombre;
     private string telefono;
     private List<Cadete> losCadetes;
-    public List<Cadete> LosCadetes { get => losCadetes;}
+    public List<Cadete> LosCadetes { get => losCadetes; }
+    public List<Pedidos> ListaDePedidos { get => listaDePedidos; }
+
+    private List<Pedidos> listaDePedidos;
 
     public Cadeteria(string nom, string tel, List<Cadete> listaCadetes)
     {
         nombre = nom;
         telefono = tel;
         losCadetes = listaCadetes;
+        listaDePedidos = new List<Pedidos>();
     }
 
-    public void AsignarPedidoaCadete(Pedidos pedidoaAsignar, int id)
+    public void RecibirPedido(Pedidos pedido)
     {
+        listaDePedidos.Add(pedido);
+    }
+
+    public Cadete buscarCadetePorID(int idCadete)
+    {
+
         foreach (var cadete in losCadetes)
         {
-            if (cadete.Id == id)
+
+            if (cadete.Id == idCadete)
             {
-                cadete.RecibirPedido(pedidoaAsignar);
+                return cadete;
+            }
+
+        }
+
+        return null;
+    }
+
+    public Pedidos buscarPedidoPorID(int idPedido)
+    {
+        return listaDePedidos.Find(pedido => pedido.Id == idPedido);
+    }
+
+    public void AsignarCadeteAlPedido(int idCadete, int idPedido)
+    {
+        Pedidos pedido = buscarPedidoPorID(idPedido);
+        Cadete cadeteAsignar = buscarCadetePorID(idCadete);
+
+
+
+        if (pedido != null && cadeteAsignar != null)
+        {
+            if (pedido.CadeteAsginado == null)
+            {
+                pedido.RecibirCadete(cadeteAsignar);
+
+            }
+            else
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("El pedido ya tiene un cadete asignado.");
+                Console.WriteLine("\n");
+
             }
         }
+        else
+        {
+            Console.WriteLine("\n");
+            Console.WriteLine("PONE BIEN EL ID GORDO CARNERO");
+            Console.WriteLine("\n");
+        }
+
+
     }
+
     public void CambiarEstadoPedido(Estado Nuevoestado, int id)
     {
-        foreach (var cadete in losCadetes)
+        bool bandera = false;
+        foreach (var pedido in listaDePedidos)
         {
-            foreach (var pedido in cadete.ListaDepedidos)
+            if (pedido.Id == id)
             {
-                if (pedido.Id == id)
-                {
-                    pedido.actualizarEstado(Nuevoestado);
-                }
+                pedido.actualizarEstado(Nuevoestado);
+                bandera = true;
+
             }
         }
+        if (bandera)
+        {
+            Console.WriteLine("Cambiado con exito!");
+
+        }
+        else
+        {
+            Console.WriteLine("si seras pelotudo, pone bien los datos");
+        }
+
     }
 
-    private Pedidos BuscarPedidoId(int idPedido)
+
+    public float JornalACobrarDelCadete(int idCadete)
     {
-        Pedidos pedidoDevuelto = null;
-
-        foreach (var cadete in losCadetes)
+        int contadorPedidos = 0;
+        foreach (var pedido in listaDePedidos)
         {
-            foreach (var pedido in cadete.ListaDepedidos)
+            if (pedido.CadeteAsginado.Id == idCadete)
             {
-                if (pedido.Id == idPedido)
-                {
-                    pedidoDevuelto = pedido;
-
-                }
+                contadorPedidos++;
             }
         }
-        return pedidoDevuelto;
-
+        return contadorPedidos * 500;
     }
 
-    public void borrarpedido(Pedidos pedido)
-    {
-        foreach (var cadete in losCadetes)
-        {
-            for (int i = cadete.ListaDepedidos.Count; i >= 0; i--)
-            {
-                if (cadete.ListaDepedidos[i] == pedido)
-                {
-                    cadete.ListaDepedidos.RemoveAt(i);
-                }
-            }
-        }
-    }
 
     public void ReasignarPedido(int idCadeteNuevo, int idpedido)
     {
-        Pedidos pedidoAReasignar = BuscarPedidoId(idpedido);
+        Cadete cadeteAsignar = buscarCadetePorID(idCadeteNuevo);
 
-        if (pedidoAReasignar != null)
+        if (cadeteAsignar != null)
         {
-            foreach (var cadete in losCadetes)
+            foreach (var pedido in listaDePedidos)
             {
-                if (cadete.Id == idCadeteNuevo)
+                if (pedido.Id == idpedido)
                 {
-                    cadete.RecibirPedido(pedidoAReasignar);
+                    pedido.RecibirCadete(cadeteAsignar);
                 }
             }
-            borrarpedido(pedidoAReasignar);
+
+        }
+        else
+        {
+            Console.WriteLine(" pone bien los datos");
         }
 
     }
+
+    public int contadorPedidos(Estado buscado)
+    {
+        int cantidadPedidos = 0;
+
+        foreach (var pedido in listaDePedidos)
+        {
+            if (pedido.Estado == buscado)
+            {
+                cantidadPedidos++;
+            }
+        }
+
+        return cantidadPedidos;
+    }
+
+    public int contadorPedidosParaCadetes(int id, Estado buscado)
+    {
+        int cantidadPedidos = 0;
+
+        foreach (var pedido in listaDePedidos)
+        {
+            if (pedido.CadeteAsginado.Id == id && pedido.Estado == buscado)
+            {
+
+                cantidadPedidos++;
+
+            }
+        }
+
+        return cantidadPedidos;
+    }
+
+    /* private Pedidos BuscarPedidoId(int idPedido)
+     {
+         Pedidos pedidoDevuelto = null;
+
+         foreach (var cadete in losCadetes)
+         {
+             foreach (var pedido in cadete.ListaDepedidos)
+             {
+                 if (pedido.Id == idPedido)
+                 {
+                     pedidoDevuelto = pedido;
+
+                 }
+             }
+         }
+         return pedidoDevuelto;
+
+     }
+
+     public void borrarpedido(Pedidos pedido)
+     {
+         foreach (var cadete in losCadetes)
+         {
+             for (int i = cadete.ListaDepedidos.Count; i >= 0; i--)
+             {
+                 if (cadete.ListaDepedidos[i] == pedido)
+                 {
+                     cadete.ListaDepedidos.RemoveAt(i);
+                 }
+             }
+         }
+     }*/
+
 
 
 

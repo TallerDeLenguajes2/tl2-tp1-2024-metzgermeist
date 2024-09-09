@@ -12,3 +12,4 @@ C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\re
 C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\tl2-tp1-2024-metzgermeist.pdb
 C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\tl2-tp1-2024-metzgermeist.genruntimeconfig.cache
 C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\ref\tl2-tp1-2024-metzgermeist.dll
+C:\Users\user\Desktop\taller 2\tp1\tl2-tp1-2024-metzgermeist\obj\Debug\net8.0\tl2-tp1-2024-metzgermeist.sourcelink.json

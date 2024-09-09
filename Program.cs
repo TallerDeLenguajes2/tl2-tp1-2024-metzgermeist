@@ -3,12 +3,28 @@
 
     private static void Main(string[] args)
     {
-        pedidosTemp ListayMas = new pedidosTemp();
-        ManejoArchivos losArcivos= new ManejoArchivos();
-        
+        Console.WriteLine("Seleccione el formato de archivo:");
+        Console.WriteLine("1. CSV");
+        Console.WriteLine("2. JSON");
+        string opcion2 = Console.ReadLine();
 
+        ManejoArchivosBase losArchivos;
+
+        switch (opcion2)
+        {
+            case "1":
+                losArchivos = new ManejoArchivosCSV();
+                break;
+            case "2":
+                losArchivos = new ManejoArchivosJSON();
+                break;
+            default:
+                Console.WriteLine("Opción no válida.");
+                return;
+        }
+    
         //--crear la cadeteria--//
-        Cadeteria  NuestraCadeteria= losArcivos.CrearCadeteria();
+        Cadeteria  NuestraCadeteria= losArchivos.CrearCadeteria();
         
 
         int opcion = 1;
@@ -60,8 +76,8 @@
 
                     referencia = ControlDatosEntrada("introduzca la direccion referencia del cliente: ");
 
-                    Console.WriteLine("Cliente agregado con éxito!");
                     Console.WriteLine("\n");
+                    Console.WriteLine("Cliente agregado con éxito!");
 
                     Console.WriteLine("*** ahora alta del pedido  ***");
 
@@ -71,7 +87,7 @@
                     string observacion = ControlDatosEntrada("introduzca alguna observacion del pedido: ");
 
                     Pedidos pedidoNuevo = new Pedidos(id, observacion, Estado.ingresado, nombre, direccion, telefono, referencia);
-                    ListayMas.AgregarPedidoaLista(pedidoNuevo);
+                    NuestraCadeteria.RecibirPedido(pedidoNuevo);
 
                     break;
 
@@ -79,17 +95,16 @@
                 case 2:
 
                     //--varaibles para asignar un pedido--//
-                    Console.WriteLine("***  usted esta por asignar el pedido a un cliente  ***");
-                    Console.WriteLine("\n");
-
-                    Console.WriteLine("introduzca el id del pedido que quiere asignar : ");
-                    int idAsignarPedido = int.Parse(Console.ReadLine()); //revisar y hacerlo mas seguro//
+                    
+                    Console.WriteLine("***  usted esta por asignar el pedido a un cadete  ***");
 
                     Console.WriteLine("introduzca el id del cadete al cual quiere asignarle el pedido: ");
                     int idAsignarCadete = int.Parse(Console.ReadLine()); //revisar y hacerlo mas seguro//
 
-                    Pedidos pedidoAsignar = ListayMas.buscarPedidoDeLista(idAsignarPedido);
-                    NuestraCadeteria.AsignarPedidoaCadete(pedidoAsignar, idAsignarCadete);
+                    Console.WriteLine("introduzca el id del pedido que quiere asignar : ");
+                    int idAsignarPedido = int.Parse(Console.ReadLine()); //revisar y hacerlo mas seguro//
+
+                    NuestraCadeteria.AsignarCadeteAlPedido(idAsignarCadete,idAsignarPedido);
 
                     break;
 
@@ -117,10 +132,10 @@
                         */
 
                         // Intentar convertir la opción en un valor del enum Estado
-
+                
                         if (Enum.TryParse(eleccion, out nuevoEstado) && Enum.IsDefined(typeof(Estado), nuevoEstado))
                         {
-                            Console.WriteLine("El nuevo estado del pedido es: {nuevoEstado}");
+                            Console.WriteLine("El nuevo estado del pedido es: "+ nuevoEstado);
                         }
                         else
                         {
@@ -143,20 +158,23 @@
                     Console.WriteLine("  ingrese el id del nuevo cadete: ");
                     int idCadeteNuevo = int.Parse(Console.ReadLine());
 
-                    NuestraCadeteria.ReasignarPedido(idReasignarPedido, idCadeteNuevo);
+                   NuestraCadeteria.ReasignarPedido(idReasignarPedido, idCadeteNuevo);
 
                     break;
                 case 5:
                     Console.WriteLine("  adios perril ");
                     break;
-
+                
             }
 
         }
         //--crear informe--//
-        Informe informeTotal=new Informe(NuestraCadeteria.LosCadetes);
-        informeTotal.MostrarInforme();
-
+        InformeCadeteria Informetotal =new InformeCadeteria(NuestraCadeteria);
+        Informetotal.MostrarInforme();
+        InformeCadetes Informeindividual =new InformeCadetes(NuestraCadeteria);
+        Informeindividual.MostrarInforme();
+        
+        
 
     }
 
