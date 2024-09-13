@@ -29,18 +29,13 @@ public class InformeIndividualCadete
         this.promedio=promedio;
 
     }
-    public void MostrarInformeIndivual()
-    {
-        Console.WriteLine("El id: " + id);
-        Console.WriteLine("El nombre del cadete es: " + nombre);
-        Console.WriteLine("El jornal del cadete es: " + jornal);
-        Console.WriteLine("La cantidad de pedidos recibidos es: " + CantidadDePedidosRecibidos);
-        Console.WriteLine("La cantidad de pedidos entregados es: " + cantidadPedidosEntregados);
-        Console.WriteLine("El promedio de pedidos entregados sobre recibidos es : " + promedio);
-    }
 
-   
-
+    public int Id { get => id;  }
+    public string Nombre { get => nombre;  }
+    public float Jornal { get => jornal;  }
+    public int CantidadDePedidosRecibidos1 { get => CantidadDePedidosRecibidos;  }
+    public int CantidadPedidosEntregados { get => cantidadPedidosEntregados; }
+    public float Promedio { get => promedio; }
 }
 
 public class InformeCadetes
@@ -53,7 +48,7 @@ public class InformeCadetes
         this.cadeteria = cadeteria;
     }
 
-    private List<InformeIndividualCadete> InformeCadetesJornada()
+    public List<InformeIndividualCadete> InformeCadetesJornada()
     {
         List<InformeIndividualCadete> datosCadetesJornal = new List<InformeIndividualCadete>();
 
@@ -80,21 +75,11 @@ public class InformeCadetes
         }
         return datosCadetesJornal;
     }
-     public void MostrarInforme()
-    {
-        var informes = InformeCadetesJornada();
-
-        foreach (var informe in informes)
-        {
-            informe.MostrarInformeIndivual();
-            Console.WriteLine("-----------------------");
-        }
-    }
-
+     
     
 
 }
-
+/*--------------------------------------------------------------------------------------------------------------*/
 public class InformeCadeteria
 {
     private Cadeteria cadeterias;
@@ -106,6 +91,10 @@ public class InformeCadeteria
 
     private float costoDiario;
 
+    public int CantidadPedidosEntregados { get => cantidadPedidosEntregados; }
+    public int CantidadDePedidosRecibidos1 { get => CantidadDePedidosRecibidos; }
+    public int CantidadPedidosCancelados { get => cantidadPedidosCancelados; }
+    public float CostoDiario { get => costoDiario;  }
 
     public InformeCadeteria(Cadeteria cadeterias)
     {
@@ -143,14 +132,5 @@ public class InformeCadeteria
         return cantidadPedidos;
     }
 
-    public void MostrarInforme()
-    {
-
-        Console.WriteLine("La cantidad de pedidos recibidos es: " + CantidadDePedidosRecibidos);
-        Console.WriteLine("La cantidad de pedidos entregados es: " + cantidadPedidosEntregados);
-        Console.WriteLine("La cantidad de pedidos cancelasdos es: " + cantidadPedidosCancelados);
-        Console.WriteLine("total:$ " + costoDiario);
-
-    }
 }
 

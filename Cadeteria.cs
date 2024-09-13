@@ -25,6 +25,7 @@ public class Cadeteria
     public void RecibirPedido(Pedidos pedido)
     {
         listaDePedidos.Add(pedido);
+        
     }
 
     public Cadete buscarCadetePorID(int idCadete)
@@ -48,7 +49,7 @@ public class Cadeteria
         return listaDePedidos.Find(pedido => pedido.Id == idPedido);
     }
 
-    public void AsignarCadeteAlPedido(int idCadete, int idPedido)
+    public bool AsignarCadeteAlPedido(int idCadete, int idPedido)
     {
         Pedidos pedido = buscarPedidoPorID(idPedido);
         Cadete cadeteAsignar = buscarCadetePorID(idCadete);
@@ -60,27 +61,24 @@ public class Cadeteria
             if (pedido.CadeteAsginado == null)
             {
                 pedido.RecibirCadete(cadeteAsignar);
+                return true;
 
             }
             else
             {
-                Console.WriteLine("\n");
-                Console.WriteLine("El pedido ya tiene un cadete asignado.");
-                Console.WriteLine("\n");
+                return false;
 
             }
         }
         else
         {
-            Console.WriteLine("\n");
-            Console.WriteLine("PONE BIEN EL ID GORDO CARNERO");
-            Console.WriteLine("\n");
+            return false;
         }
 
 
     }
 
-    public void CambiarEstadoPedido(Estado Nuevoestado, int id)
+    public bool CambiarEstadoPedido(Estado Nuevoestado, int id)
     {
         bool bandera = false;
         foreach (var pedido in listaDePedidos)
@@ -94,12 +92,12 @@ public class Cadeteria
         }
         if (bandera)
         {
-            Console.WriteLine("Cambiado con exito!");
+            return true;
 
         }
         else
         {
-            Console.WriteLine("si seras pelotudo, pone bien los datos");
+           return false;
         }
 
     }
@@ -119,7 +117,7 @@ public class Cadeteria
     }
 
 
-    public void ReasignarPedido(int idCadeteNuevo, int idpedido)
+    public bool ReasignarPedido(int idCadeteNuevo, int idpedido)
     {
         Cadete cadeteAsignar = buscarCadetePorID(idCadeteNuevo);
 
@@ -132,11 +130,12 @@ public class Cadeteria
                     pedido.RecibirCadete(cadeteAsignar);
                 }
             }
+            return true;
 
         }
         else
         {
-            Console.WriteLine(" pone bien los datos");
+            return false;
         }
 
     }
@@ -173,39 +172,7 @@ public class Cadeteria
         return cantidadPedidos;
     }
 
-    /* private Pedidos BuscarPedidoId(int idPedido)
-     {
-         Pedidos pedidoDevuelto = null;
-
-         foreach (var cadete in losCadetes)
-         {
-             foreach (var pedido in cadete.ListaDepedidos)
-             {
-                 if (pedido.Id == idPedido)
-                 {
-                     pedidoDevuelto = pedido;
-
-                 }
-             }
-         }
-         return pedidoDevuelto;
-
-     }
-
-     public void borrarpedido(Pedidos pedido)
-     {
-         foreach (var cadete in losCadetes)
-         {
-             for (int i = cadete.ListaDepedidos.Count; i >= 0; i--)
-             {
-                 if (cadete.ListaDepedidos[i] == pedido)
-                 {
-                     cadete.ListaDepedidos.RemoveAt(i);
-                 }
-             }
-         }
-     }*/
-
+    
 
 
 

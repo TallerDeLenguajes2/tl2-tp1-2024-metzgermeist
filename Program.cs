@@ -22,11 +22,11 @@
                 Console.WriteLine("Opción no válida.");
                 return;
         }
-    
+
         //--crear la cadeteria--//
-        Cadeteria  NuestraCadeteria= losArchivos.CrearCadeteria();
-  
-        
+        Cadeteria NuestraCadeteria = losArchivos.CrearCadeteria();
+
+
 
         int opcion = 1;
 
@@ -96,7 +96,7 @@
                 case 2:
 
                     //--varaibles para asignar un pedido--//
-                    
+
                     Console.WriteLine("***  usted esta por asignar el pedido a un cadete  ***");
 
                     Console.WriteLine("introduzca el id del cadete al cual quiere asignarle el pedido: ");
@@ -105,7 +105,16 @@
                     Console.WriteLine("introduzca el id del pedido que quiere asignar : ");
                     int idAsignarPedido = int.Parse(Console.ReadLine()); //revisar y hacerlo mas seguro//
 
-                    NuestraCadeteria.AsignarCadeteAlPedido(idAsignarCadete,idAsignarPedido);
+                    var control = NuestraCadeteria.AsignarCadeteAlPedido(idAsignarCadete, idAsignarPedido);
+                    if (control)
+                    {
+                        Console.WriteLine("pedido asignado con exito!! ");
+                    }
+                    else
+                    {
+                        Console.WriteLine("error al asignar el pedido, controle que haya ingresado bien los id correspondientes! ");
+
+                    }
 
                     break;
 
@@ -120,23 +129,17 @@
                     Console.WriteLine("3) --  Cancelado --");
 
                     Estado nuevoEstado;
-            
+
                     string eleccion;
                     do
                     {
                         // Leer la opción ingresada por el usuario
                         eleccion = Console.ReadLine();
 
-                        /*
-                        bool resultadoEstado = int.TryParse(eleccion, out nroEstado);
-                        nuevoEstado = (Estado)nroEstado;
-                        */
 
-                        // Intentar convertir la opción en un valor del enum Estado
-                
                         if (Enum.TryParse(eleccion, out nuevoEstado) && Enum.IsDefined(typeof(Estado), nuevoEstado))
                         {
-                            Console.WriteLine("El nuevo estado del pedido es: "+ nuevoEstado);
+                            Console.WriteLine("El nuevo estado del pedido es: " + nuevoEstado);
                         }
                         else
                         {
@@ -144,10 +147,17 @@
                         }
                     } while (!Enum.TryParse(eleccion, out nuevoEstado));
 
-                    NuestraCadeteria.CambiarEstadoPedido(nuevoEstado, idPedidoACambiarEstado);
+                    var control1 = NuestraCadeteria.CambiarEstadoPedido(nuevoEstado, idPedidoACambiarEstado);
 
+                    if (control1)
+                    {
+                        Console.WriteLine("pedido cambio de estado con exito!  ");
+                    }
+                    else
+                    {
+                        Console.WriteLine("error al cambiar el pedido! ");
 
-
+                    }
 
                     break;
                 case 4:
@@ -159,24 +169,60 @@
                     Console.WriteLine("  ingrese el id del nuevo cadete: ");
                     int idCadeteNuevo = int.Parse(Console.ReadLine());
 
-                   NuestraCadeteria.ReasignarPedido(idReasignarPedido, idCadeteNuevo);
+                    var control2 = NuestraCadeteria.ReasignarPedido(idReasignarPedido, idCadeteNuevo);
+
+                    if (control2)
+                    {
+                        Console.WriteLine("pedido se reasigno con exito!! ");
+                    }
+                    else
+                    {
+                        Console.WriteLine("error al reasignar el pedido! ");
+
+                    }
 
                     break;
                 case 5:
                     Console.WriteLine("  adios perril ");
                     break;
-                
+
             }
 
         }
-        //--crear informe--//
-        InformeCadeteria Informetotal =new InformeCadeteria(NuestraCadeteria);
-        Informetotal.MostrarInforme();
-        InformeCadetes Informeindividual =new InformeCadetes(NuestraCadeteria);
-        Informeindividual.MostrarInforme();
-        
-        
+        //--crear informe y mostrarlo--//
+        mostrarInformeGlobal(NuestraCadeteria);
 
+        //--crear informes individuales y mostrarlo--//
+        InformeCadetes Informeindividual = new InformeCadetes(NuestraCadeteria);
+        
+        var ListaDeInformes = Informeindividual.InformeCadetesJornada();
+        
+        foreach (var informe in ListaDeInformes)
+        {
+            Console.WriteLine("El id del cadete es: " + informe.Id);
+            Console.WriteLine("El nombre del cadete es: " + informe.Nombre);
+            Console.WriteLine("La cantidad de pedidos recibidos es: " + informe.CantidadDePedidosRecibidos1);
+            Console.WriteLine("La cantidad de pedidos entregados es: " + informe.CantidadPedidosEntregados);
+            Console.WriteLine("El Jornal Ganado es: " + informe.Jornal);
+            Console.WriteLine("El promedio de pedidos entregados sobre recibidos: " + informe.Promedio);
+
+
+
+
+        }
+
+
+
+
+    }
+
+    private static void mostrarInformeGlobal(Cadeteria NuestraCadeteria)
+    {
+        InformeCadeteria Informetotal = new InformeCadeteria(NuestraCadeteria);
+        Console.WriteLine("La cantidad de pedidos recibidos es: " + Informetotal.CantidadDePedidosRecibidos1);
+        Console.WriteLine("La cantidad de pedidos entregados es: " + Informetotal.CantidadPedidosEntregados);
+        Console.WriteLine("La cantidad de pedidos cancelados  es: " + Informetotal.CantidadPedidosCancelados);
+        Console.WriteLine("El costo total : " + Informetotal.CantidadDePedidosRecibidos1);
     }
 
     private static string ControlDatosEntrada(string mensaje)
